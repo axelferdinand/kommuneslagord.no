@@ -1,0 +1,7 @@
+.git
+scss
+js/controllers
+js/directives
+js/vendors
+prototypen.js
+.htaccess

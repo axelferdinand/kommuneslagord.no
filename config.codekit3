@@ -27,6 +27,14 @@
 		"oF": 0,
 		"oS": 3
 		},
+	"/excluded.txt": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/excluded.txt",
+		"oF": 0
+		},
 	"/fonts/icons.eot": {
 		"cB": 0,
 		"ft": 8192,
