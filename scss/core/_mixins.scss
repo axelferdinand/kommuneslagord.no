@@ -1,0 +1,41 @@
+// Media queries (set to false to turn off media queries and output everything)
+$media-queries: true !default;
+
+// Breakpoints
+@mixin break($startBreakpoint:null, $endBreakpoint:null) {
+    $startValue: map-get($breakpoints, $startBreakpoint);
+    $endValue: map-get($breakpoints, $endBreakpoint);
+
+    @if $media-queries {
+        @if $startBreakpoint != null and $endBreakpoint != null {
+            @media (min-width: if($startValue, $startValue, $startBreakpoint)) and (max-width: if($endValue, $endValue, $endBreakpoint)) {
+                @content;
+            }
+        } @else if $startBreakpoint != null {
+            @media (min-width: if($startValue, $startValue, $startBreakpoint)) {
+                @content;
+            }
+        } @else if $endBreakpoint != null {
+            @media (max-width: if($endValue, $endValue, $endBreakpoint)) {
+                @content;
+            }
+        } @else {
+            @media ($startBreakpoint: $startValue) { @content; }
+        }
+    } @else {
+        @content;
+    }
+}
+
+// Grid, span
+@mixin span($col-width: 1, $padding: "0") {
+    $fraction: split-col-width-value($col-width,fraction);
+
+    width: percentage($fraction);
+
+    @if $padding == false {
+    } @else {
+        float: left;
+        padding: 0 1rem;
+    }
+}

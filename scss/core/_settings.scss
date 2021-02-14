@@ -1,0 +1,93 @@
+// Baseline
+$baseline: 1rem;
+
+// Grid
+$gutter: 1rem;
+$container-max-width-extra-wide: 1800px;
+$container-max-width-wide: 1500px;
+$container-max-width: 1125px;
+$container-max-width-narrow: 45rem;
+$container-max-width-extra-narrow: 35rem;
+
+// Breakpoints
+$breakpoints: (
+	small: 500px,
+	medium: 760px,
+	large: 1100px,
+	xlarge: 1400px,
+);
+
+// Colors
+$colors: (
+	primary: #DB4437, // Dark red - Must be in contrast to white
+	secondary: #002e5e, // Blue - Must be in contrast to white
+
+	link: #002e5e,
+
+	text: #002e5e,
+	text-lighter: #757575,
+
+	border: #D8D8D8,
+	border-light: #F0F0F0,
+
+	background-dark: #E2E2E2,
+	background: #EADFD6,
+	background-light: #FFFAF3,
+
+	light: #FFF,
+	dark: #000,
+
+	star: #FAAD47,
+
+	error: #E51F2D,
+	success: #008839,
+
+);
+
+// Typography
+$font-max-width: 35rem;
+$font-max-width-wide: 45rem;
+$font-max-width-narrow: 25rem;
+$font-family-primary: 'sofia-pro-soft', Helvetica, sans-serif;
+$font-family-secondary: 'ff-providence-sans-web-pro', Helvetica, sans-serif;
+
+
+// Paths
+$path-img: '../img/';
+$path-fonts: '../fonts/';
+$icon: '../img/icons';
+
+// Defaults
+
+// Border
+$default-border-width: 1px;
+$default-border-width-thicker: 2px;
+$default-border-style: solid;
+$default-border-color: color(border);
+$default-border: $default-border-width $default-border-style $default-border-color;
+$default-border-radius: 6px;
+$default-border-radius-round: 3rem;
+
+// Shadow
+$default-horizontal-offset: 0;
+$default-vertical-offset: 3px;
+$default-blur: 6px;
+$default-spread: 0px;
+$default-opacity: rgba(color(dark), 0.16);
+$default-shadow: $default-horizontal-offset $default-vertical-offset $default-blur $default-spread $default-opacity;
+
+// Transition
+$default-transition-type: all;
+$default-transition-length: .15s;
+$default-transition-effect: ease-in-out;
+$default-transition: $default-transition-type $default-transition-length $default-transition-effect;
+
+// Custom
+$logo-width: 12rem;
+
+$card-max-width: 18rem;
+$author-height: 2.5rem;
+$contact-height: 6rem;
+$header-height: 4rem;
+
+$sidebar-width: 21rem;

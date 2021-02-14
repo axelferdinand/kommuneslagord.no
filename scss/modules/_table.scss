@@ -1,0 +1,42 @@
+
+// Table
+.table,
+table {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include break(null, small) {
+        width: calc(100% + #{$gutter * 1.5});
+        font-size: 0.8rem;
+        margin-left: -$gutter * 0.75;
+        margin-right: -$gutter * 0.75;
+    }
+
+    thead {
+        border-bottom: $default-border;
+    }
+
+    th {
+        @extend .strong;
+        text-transform: uppercase;
+
+        @include break(null, large) {
+            white-space: nowrap;
+        }
+
+    }
+
+    th, td {
+        padding: $gutter / 2 $gutter * 0.75;
+        text-align: left;
+    }
+
+    td + td {
+        border-left: $default-border;
+    }
+
+    tr + tr {
+        border-top: $default-border;
+    }
+}

@@ -1,0 +1,51 @@
+// Input
+.input {
+	@extend .o-text-antialiased;
+	@extend .o-reset-appearance;
+	display: inline-block;
+	padding: $gutter / 2 $gutter * 0.75;
+	width: 100%;
+	font-family: inherit;
+	font-weight: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	background-color: color(light);
+	border: $default-border-width-thicker solid color(border);
+	border-radius: $default-border-radius !important;
+	transition: $default-transition;
+
+	@media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 1100px) {
+		font-size: 16px !important; // FIX to avoid browser zoom on input focus on iOS
+	}
+
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button {
+		margin: 0;
+	}
+
+	&:hover,
+	&:focus {
+		outline: none;
+		border-color: color(secondary);
+		box-shadow: 0 0 0 1px color(secondary);
+	}
+
+	&--error {
+		border-color: color(error);
+	}
+
+	&--success {
+
+		&:focus {
+			border-color: color(success);
+		}
+	}
+
+	&--large {
+		padding: $gutter $gutter * 1.5;
+	}
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px color(light) inset;
+}

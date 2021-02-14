@@ -1,0 +1,64 @@
+// Textfilter
+.textfilter {
+    width: 100%;
+    display: block;
+    clear: both;
+    @include clearfix;
+    position: relative;
+    text-align: left;
+    max-width: $font-max-width;
+
+    &__input {
+        @extend .input;
+        position: relative;
+        padding-right: $gutter * 2.5;
+        font-size: 1.25rem;
+    }
+
+    &__button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 2.5rem;
+        height: 100%;
+        text-align: center;
+
+        &__icon {
+            font-size: 1.25rem;
+            line-height: 1;
+            position: relative;
+            top: 0.05em;
+            right: 0;
+            text-shadow: none;
+
+            &--search {
+                @extend .icon-search;
+                color: color(secondary);
+                pointer-events: none;
+            }
+
+            &--reset {
+                @extend .icon-close;
+                color: color(secondary);
+            }
+        }
+    }
+
+    &--large {
+      max-width: $font-max-width-wide;
+
+      .textfilter {
+        &__input {
+          @extend .input--large;
+        }
+
+        &__button {
+          width: 3.5rem;
+
+          &__icon {
+            font-size: 1.75rem;
+          }
+        }
+      }
+    }
+}

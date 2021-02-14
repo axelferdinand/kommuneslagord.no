@@ -1,0 +1,266 @@
+html {
+  font-size: 1em;
+  line-height: 1.5;
+  font-family: $font-family-primary;
+  color: color(text);
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @include break(small) {
+    font-size: 1.125rem;
+  }
+
+  @include break(xlarge) {
+    font-size: 1.25rem;
+  }
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-secondary;
+  font-weight: normal;
+  font-style: normal;
+  display: block;
+  margin-bottom: $gutter / 2;
+}
+
+.h1,
+h1 {
+  font-size: clamp(2rem, 9vw, 6rem);
+  margin-bottom: clamp(2rem, 4vw, 5rem);
+  line-height: 1.125;
+  margin-bottom: $gutter * 3;
+  font-weight: 700;
+}
+
+.h2,
+h2 {
+  font-size: 2rem;
+  line-height: 1.25;
+  margin-bottom: $gutter;
+}
+
+.h3,
+h3 {
+  font-size: 1.5rem;
+}
+
+.h4,
+.h5,
+.h6,
+h4,
+h5,
+h6 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.015em;
+  margin-bottom: $gutter / 2;
+}
+
+.tagline {
+  font-size: clamp(1rem, 3vw, 3rem);
+  margin-bottom: clamp(1rem, 5vw, 3rem);
+  font-family: $font-family-secondary;
+  font-weight: bold;
+  color: color(primary);
+  text-transform: uppercase;
+  display: block;
+}
+
+.title {
+  font-size: clamp(3rem, 12vw, 10rem);
+  margin-bottom: clamp(2rem, 4vw, 5rem);
+}
+
+.lead {
+  font-size: clamp(1.25rem, 5vw, 1.5rem);
+  margin-bottom: clamp(3rem, 5vw, 5rem);
+}
+
+.p,
+p {
+  display: block;
+  font-size: clamp(1.25rem, 5vw, 1.5rem);
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+  max-width: $container-max-width-narrow;
+
+  & + h2 {
+    margin-top: $gutter * 3;
+  }
+}
+
+.normal {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.small,
+small {
+  font-size: 0.8rem;
+}
+
+.meta {
+  @extend .small;
+  display: inline-block;
+  color: color(text-lighter);
+}
+
+.highlight {
+  display: inline;
+  background-color: #FFF;
+  line-height: 1.4;
+  box-shadow: -0.25em 0 0 #FFF, 0.25em 0 0 #FFF;
+}
+
+.error {
+  color: color(error) !important;
+}
+
+.success {
+  color: color(success) !important;
+}
+
+a {
+  text-decoration: none;
+  color: color(link);
+}
+
+a[href]:not([class]) {
+  text-decoration: none;
+  color: color(link);
+  border-bottom: $default-border-width solid color(secondary);
+
+  &:hover {
+    color: color(secondary);
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: color(link);
+  display: inline-block;
+  border-bottom: $default-border-width solid color(secondary);
+
+  &:hover {
+    color: color(secondary);
+  }
+}
+
+.strong,
+strong {
+  font-weight: 700 !important;
+}
+
+sup,
+.sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  top: -0.5em;
+  padding-left: 0.15em;
+  padding-right: 0.15em;
+}
+
+code,
+.code {
+  display: inline-block;
+  font-family: monospace;
+  padding: $gutter;
+  background-color: color(background-light);
+  border-radius: $default-border-radius;
+  white-space: pre-line;
+  color: color(primary);
+}
+
+.ol,
+.ul,
+ol,
+ul {
+  margin-bottom: $gutter * 3;
+  padding-left: $gutter;
+
+  li {
+    margin-bottom: $gutter / 2;
+  }
+
+  ul {
+    padding-top: $gutter / 2;
+  }
+}
+
+.dl,
+dl {
+  margin-bottom: $gutter * 3;
+
+  &__title,
+  dt,
+  &__description,
+  dd {
+    @include clearfix;
+  }
+
+  &__title,
+  dt {
+    float: left;
+    padding: $gutter * 0.75 0;
+    max-width: calc(100% - #{$gutter * 7});
+    padding-right: $gutter;
+  }
+
+  &__description,
+  dd {
+    padding-top: $gutter * 0.75;
+    text-align: right;
+    border-bottom: 1px solid color(border);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.hr,
+hr {
+  clear: both;
+  height: 1px;
+  margin: 0 auto;
+  border: none;
+  border-bottom: $default-border-width solid color(light);
+  @include clearfix;
+}
+
+::selection {
+  color: color(light);
+  background: color(primary);
+  text-shadow: none;
+}
+
+.touch {
+
+  a {
+
+    &:focus,
+    &:hover {
+      text-decoration: none;
+      color: inherit;
+      background-color: inherit;
+    }
+  }
+}
+
+// * { outline: 1px solid pink; }

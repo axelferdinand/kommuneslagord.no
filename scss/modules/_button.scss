@@ -1,0 +1,51 @@
+@mixin button {
+    display: inline-block;
+    padding: $gutter * 0.5 $gutter * 1.5;
+    background-color: color(primary);
+    border: $default-border-width solid color(primary);
+    color: color(background-light);
+    border-radius: $default-border-radius;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    text-align: center;
+    cursor: pointer;
+    max-width: $font-max-width;
+}
+
+.button {
+    @include button;
+
+    span {
+        pointer-events: none;
+    }
+
+    &--small {
+      padding: $gutter / 4 $gutter;
+      @extend .small;
+    }
+
+    &--large {
+      padding: $gutter $gutter * 3;
+    }
+
+    &--primary {
+      background-color: color(primary) !important;
+      border-color: color(primary) !important;
+      color: color(light) !important;
+      font-weight: bold !important;
+    }
+
+    &--secondary {
+      background-color: color(secondary) !important;
+      border-color: color(secondary) !important;
+      color: color(light) !important;
+    }
+
+    &--outlined {
+      background-color: transparent;
+      border-color: color(secondary);
+      color: color(secondary);
+    }
+}

@@ -1,0 +1,68 @@
+// When updating icons, use icomoon.io to generate new icon fonts and only change $icons variables and update the /fonts/ directory
+$icons: (
+  icon-close: "\e900",
+  icon-search: "\e901",
+);
+
+
+// Never change the following
+$icomoon-font-family: "icons" !default;
+$icomoon-font-path: "../fonts" !default;
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?rscach');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?rscach#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?rscach') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?rscach') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?rscach##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: '#{$icomoon-font-family}';
+    src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?rscach##{$icomoon-font-family}') format('svg');
+  }
+}
+
+@mixin icon-styles {
+    display: inline-block;
+    font-family: '#{$icomoon-font-family}' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: inherit;
+    text-rendering: optimizeLegibility;
+    font-smoothing: antialiased;
+    speak: none;
+}
+
+[data-icon]:before { content: attr(data-icon); }
+
+.icon:before,
+[data-icon]:before,
+[class^="icon-"],
+[class*=" icon-"] {
+    @include icon-styles;
+}
+
+@each $iconName, $icon in $icons {
+	.#{$iconName} {
+      @extend .icon;
+        &:before {
+            content: $icon;
+        }
+    }
+}
+
+.icon {
+  position: relative;
+  top: 0.05em;
+}

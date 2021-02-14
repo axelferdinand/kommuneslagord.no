@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html data-ng-app="prototypen" lang="nb_NO">
+<head>
+  <title>Kommuneslagord.no – en generator som viser deg slagordene til norske kommuner</title>
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Kommuneslagord.no">
+  <meta property="og:title" content="Kommuneslagord.no">
+  <meta property="og:description" content="På Kommuneslagord.no kan du søke blant alle kommuneslagordene eller generere et helt tilfeldig slagord.">
+  <meta property="og:url" content="https://kommuneslagord.no/">
+
+  <meta property="og:image" content="https://kommuneslagord.no/img/kommuneslagord-generator.png">
+  <meta property="og:image:width" content="1000">
+  <meta property="og:image:height" content="1000">
+
+  <link rel="stylesheet" href="https://use.typekit.net/jdb2dqe.css">
+
+  <link rel="stylesheet" href="/css/prototypen.min.css?v=349351032.css"/>
+
+  <script src="/js/prototypen.min.js?v=349351032.js"></script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.4/angular-filter.js"></script>
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LH9LZ2V7RQ"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LH9LZ2V7RQ');
+  </script>
+</head>
+<body>
+  <div class="municipality" data-ng-controller="municipality">
+
+    <header class="municipality__header">
+      <a class="municipality__header__brand" href="https://kommuneslagord.no" title="Kommuneslagord.no">
+        <h1 class="municipality__header__brand__title">Kommuneslagord.no</h1>
+      </a>
+      <div class="municipality__header__toggle">
+        <button class="municipality__header__toggle__item" data-ng-class="{'municipality__header__toggle__item--selected': municipality == 'Generator'}" data-ng-click="municipalityToggleView('Generator')">Generator</button><button class="municipality__header__toggle__item" data-ng-class="{'municipality__header__toggle__item--selected': municipality == 'List'}" data-ng-click="municipalityToggleView('List'); filter.query = ''; queryFocus = true;">Liste</button>
+      </div>
+      <div class="municipality__header__info">
+        <button class="municipality__header__info__button" data-ng-click="municipalityToggleView('Info')">ℹ︎</button>
+      </div>
+    </header>
+
+    <div class="municipality__info ng-cloak" id="info" data-ng-if="municipality == 'Info'">
+      <h1>Har du hørt om kommuneslagord?</h1>
+      <p>Kommuneslagord.no er laget for å gi deg oversikt over alle de fantastiske slagordene byråkratene våre har laget for sine respektive kommuner. Du kan søke i <button class="link" type="button" data-ng-click="municipalityToggleView('List')">listen</button> over kommuneslagord, eller du kan prøve <button class="link" type="button" data-ng-click="municipalityToggleView('Generator')">generatoren</button> for å få et tilfeldig kommuneslagord.</p>
+      <p>Listen inkluderer de gamle slagordene som ble fjernet som følge av kommuenereformene i perioden 2017 til 2020 – rett og slett fordi de er helt supre.</p>
+      <p>Noen av kommunene våre mangler slagord, enten fordi slagordene ikke er vedtatt eller offisielt markedsført enda. Om du har forslag til slagord for din kommune, bør du ta kontakt med din nærmeste byråkrat.</p>
+      <p>Nettstedet er laget av <a href="https://prototypen.no" target="_blank">Prototypen</a> og bruker Google Analytics for å sjekke hvor mange som har vært innom.</p>
+    </div>
+
+    <div class="municipality__generator ng-cloak" id="generator" data-ng-if="municipality == 'Generator'">
+      <article class="municipality__generator__item" data-ng-repeat="item in random(items) | filter:{ slagord: ' '} | limitTo: 1">
+        <h2 class="municipality__generator__item__title">[[ item.kommune ]] kommune</h2>
+        <p class="municipality__generator__item__slogan">"[[ item.slagord ]]"</p>
+      </article>
+    </div>
+
+    <div class="municipality__list ng-cloak" id="list" data-ng-if="municipality == 'List'">
+      <div class="municipality__list__filter">
+        <div class="textfilter textfilter--large">
+          <input
+          class="textfilter__input"
+          type="text"
+          autocomplete="off"
+          autofocus="on"
+          placeholder="Søk etter kommune eller slagord..."
+          data-ng-model="filter.query"
+          data-ng-focus="queryFocus"
+          data-bind-focus="queryFocus"
+          data-esc-key="updateFilter(); filter.query = '';"
+          data-enter-key="updateFilter();"
+          id="filter"
+          />
+          <button class="textfilter__button" data-ng-click="filter.query = ''; queryFocus = true; updateFilter();">
+            <i class="textfilter__button__icon textfilter__button__icon--search" data-ng-hide="filter.query.length > 0"></i>
+            <i class="textfilter__button__icon textfilter__button__icon--reset" data-ng-show="filter.query.length > 0"></i>
+          </button>
+        </div>
+      </div>
+      <div class="municipality__list__wrapper">
+        <article class="municipality__list__item ng-cloak" data-ng-if="filter.query.length" data-ng-repeat="item in filteredList = (items | filter:filter.query)">
+          <h2 class="municipality__list__item__title">[[ item.kommune ]]</h2>
+          <p class="municipality__list__item__slogan" data-ng-if="item.slagord">"[[ item.slagord ]]"</p>
+          <p class="municipality__list__item__slogan" data-ng-if="!item.slagord">(mangler slagord)</p>
+        </article>
+      </div>
+      <div class="municipality__list__summary">
+        <p data-ng-show="!filteredList.length">Ingen treff matchet søket <strong data-ng-show="filter.query.length"> «[[ filter.query ]]»</strong>.</p>
+        <!-- <div class="p" data-ng-show="filter.query">
+          <div class="tag" data-ng-show="filter.query"><span class="tag__title">[[ filter.query ]]</span> <button class="tag__remove" type="button" data-ng-click="filter.query = undefined; queryFocus = true; updateFilter();"><span class="tag__remove__title">Fjern [[ filter.query ]]</span></button></div>
+        </div> -->
+        <button data-ng-show="filter.query.length" class="link" type="button" data-ng-click="filter.query = ''; queryFocus = true; updateFilter();"><span>Nullstill søket</span></button>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

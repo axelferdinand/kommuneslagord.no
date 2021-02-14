@@ -1,0 +1,211 @@
+// Clearfix
+.o-clearfix { @include clearfix; }
+
+// Clear
+.o-clear-both { clear: both; }
+.o-clear-left { clear: left; }
+.o-clear-right { clear: right; }
+
+// Float
+.o-right { float: right; }
+.o-left { float: left; }
+
+// Display
+.o-table { display: table; }
+.o-table-cell { display: table-cell; }
+.o-block { display: block; }
+.o-inline { display: inline; }
+.o-inline-block { display: inline-block; }
+
+// Overflow
+.o-oh { overflow: hidden; }
+.o-ov { overflow: visible; }
+
+// Center
+.o-center-vertical {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.o-center-horizontal {
+    clear: both;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// Space
+.o-space { margin-bottom: $gutter; }
+.o-space-grid-gutter { margin-bottom: $gutter * 2; }
+.o-space-gutter { margin-bottom: $gutter; }
+.o-space-gutter-half { margin-bottom: $gutter / 2; }
+.o-space-gutter-1 { margin-bottom: $gutter; }
+.o-space-gutter-2 { margin-bottom: $gutter * 2; }
+.o-space-gutter-3 { margin-bottom: $gutter * 3; }
+.o-space-top { margin-top: $gutter; }
+.o-space-top-gutter-half { margin-top: $gutter / 2; }
+
+// Position
+.o-relative { position: relative; }
+.o-static { position: static; }
+
+// No scroll
+.o-no-scroll {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+// Margin
+.o-no-margin { margin: 0 !important; }
+.o-no-margin-top { margin-top: 0 !important; }
+.o-no-margin-right { margin-right: 0 !important; }
+.o-no-margin-bottom { margin-bottom: 0 !important; }
+.o-no-margin-left { margin-left: 0 !important; }
+
+// Padding
+.o-no-padding { padding: 0; }
+.o-no-padding-top { padding-top: 0; }
+.o-no-padding-right { padding-right: 0; }
+.o-no-padding-bottom { padding-bottom: 0; }
+.o-no-padding-left { padding-left: 0; }
+
+// Border
+.o-no-border { border: 0; }
+.o-no-border-top { border-top: 0; }
+.o-no-border-right { border-right: 0; }
+.o-no-border-bottom { border-bottom: 0; }
+.o-no-border-left { border-left: 0; }
+
+.o-show { display: block; }
+.o-hide { display: none; }
+
+.o-hide-when-small {
+    @include break(null,small) { display: none; }
+}
+
+.o-hide-when-medium {
+    @include break(small,medium) { display: none; }
+}
+
+.o-hide-when-large {
+    @include break(medium,large) { display: none; }
+}
+
+.o-hide-when-xlarge {
+    @include break(large,xlarge) { display: none; }
+}
+
+.o-shadow {
+    box-shadow: $default-shadow;
+}
+
+// .o-baseline-grid { @include display-baseline-grid; }
+
+// Text
+.o-text-uppercase { text-transform: uppercase; }
+.o-text-lowercase { text-transform: lowercase; }
+
+.o-text-center {
+    text-align: center;
+
+    p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.o-text-right { text-align: right; }
+.o-text-left { text-align: left; }
+
+.o-text-strong { font-weight: strong; }
+.o-text-normal { font-weight: normal; }
+.o-text-italic { font-style: italic; }
+.o-text-nowrap { white-space: nowrap; }
+
+.o-text-hide {
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+}
+
+.o-text-disable-select {
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+
+.o-text-antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.o-text-emboss { box-shadow: color(light)(0.8) 0 1px 0, inset color(dark)(0.05) 0 1px 0; }
+.o-text-letterpress { text-shadow: color(light)(0.5) 0 1px 0; }
+
+// Reset
+.o-reset-float { float: none; }
+
+.o-reset-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+
+    li {
+        margin: 0;
+        padding: 0;
+
+        &:before,
+        &:after {
+            display: none;
+        }
+    }
+}
+
+.o-reset-appearance {
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+.o-reset-clearfix {
+
+    &:after {
+        display: inline;
+        clear: none;
+    }
+}
+
+.o-reset-spacing { @include reset-spacing; }
+.o-reset-pointer { pointer-events: none; }
+
+.o-max { max-width: $font-max-width; }
+
+// Color
+@each $colorName, $color in $colors {
+	.o-color-#{$colorName} { color: $color; }
+}
+
+// Background color
+@each $colorName, $color in $colors {
+	.o-background-color-#{$colorName} { background-color: $color; }
+}
+
+.o-background-negative {
+    color: color(light);
+
+    a[href]:not([class]) {
+        color: color(light);
+        border-bottom-color: color(light);
+
+        &:focus,
+        &:hover {
+            color: color(light);
+            border-bottom-color: color(light);
+        }
+    }
+}

@@ -1,0 +1,151 @@
+// Clearfix
+@mixin clearfix {
+
+   &:after {
+       content: '';
+       display: table;
+       clear: both;
+   }
+}
+
+// Reset spacing of last child in module
+@mixin reset-spacing {
+   > * {
+
+       &:last-child {
+           margin-bottom: 0;
+
+           > * {
+
+               &:last-child {
+                   margin-bottom: 0;
+
+                   > * {
+
+                       &:last-child {
+                           margin-bottom: 0;
+
+                           > * {
+
+                               &:last-child {
+                                   margin-bottom: 0;
+                               }
+                           }
+                       }
+                   }
+               }
+           }
+       }
+   }
+}
+
+// Modules
+@mixin module {
+   padding: $gutter * 3 $gutter * 1.5;
+
+   @include break(medium) {
+       padding: $gutter * 4 $gutter * 3;
+   }
+
+   @include break(large) {
+       padding: $gutter * 4;
+   }
+
+   @include break(xlarge) {
+       padding: $gutter * 6;
+   }
+}
+
+@mixin module-top {
+  padding-top: $gutter * 3;
+
+  @include break(medium) {
+      padding-top: $gutter * 4;
+  }
+
+  @include break(large) {
+      padding-top: $gutter * 4;
+  }
+
+  @include break(xlarge) {
+      padding-top: $gutter * 6;
+  }
+}
+
+@mixin module-bottom {
+  padding-bottom: $gutter * 3;
+
+  @include break(medium) {
+      padding-bottom: $gutter * 4;
+  }
+
+  @include break(large) {
+      padding-bottom: $gutter * 4;
+  }
+
+  @include break(xlarge) {
+      padding-bottom: $gutter * 6;
+  }
+}
+
+@mixin module-left {
+  padding-left: $gutter * 1.5;
+
+  @include break(medium) {
+      padding-left: $gutter * 3;
+  }
+
+  @include break(large) {
+      padding-left: $gutter * 4;
+  }
+
+  @include break(xlarge) {
+      padding-left: $gutter * 6;
+  }
+}
+
+@mixin module-right {
+  padding-right: $gutter * 1.5;
+
+  @include break(medium) {
+      padding-right: $gutter * 3;
+  }
+
+  @include break(large) {
+      padding-right: $gutter * 4;
+  }
+
+  @include break(xlarge) {
+      padding-right: $gutter * 6;
+  }
+}
+
+@mixin reset-module-h {
+   margin-left: -$gutter * 1.5;
+   margin-right: -$gutter * 1.5;
+
+   @include break(medium) {
+       margin-left: -$gutter * 3;
+       margin-right: -$gutter * 3;
+   }
+
+   @include break(large) {
+       margin-left: -$gutter * 6;
+       margin-right: -$gutter * 6;
+   }
+}
+
+@mixin reset-module-v {
+   padding-top: 0;
+   padding-bottom: 0;
+
+   @include break(medium) {
+       padding-top: 0;
+       padding-bottom: 0;
+   }
+
+   @include break(large) {
+       padding-top: 0;
+       padding-bottom: 0;
+   }
+}

@@ -1,0 +1,40 @@
+html {
+    box-sizing: border-box;
+    max-width: $container-max-width-extra-wide;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    background-color: color(background-light);
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+// Angular
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.ng-hidden {
+    visibility: hidden !important;
+}
+
+// Current break point
+@include break(small) { body:after { content: 'small';} }
+@include break(medium) { body:after { content: 'medium';} }
+@include break(large) { body:after { content: 'large';} }
+@include break(xlarge) { body:after { content: 'xlarge';} }
+
+body {
+
+    &:after {
+        display: none;
+        // position: fixed;
+        // top: 0;
+        // right: 0;
+        // z-index: 1000000000;
+    }
+}
