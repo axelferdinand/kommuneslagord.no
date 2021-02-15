@@ -62,7 +62,7 @@
     <div class="municipality__generator ng-cloak" id="generator" data-ng-if="municipality == 'Generator'">
       <article class="municipality__generator__item" data-ng-repeat="item in random(items) | filter:{ slagord: ' '} | limitTo: 1">
         <h2 class="municipality__generator__item__title">[[ item.kommune ]] kommune</h2>
-        <p class="municipality__generator__item__slogan">"[[ item.slagord ]]"</p>
+        <p class="municipality__generator__item__slogan">[[ item.slagord ]]</p>
       </article>
     </div>
 
@@ -89,17 +89,14 @@
         </div>
       </div>
       <div class="municipality__list__wrapper">
-        <article class="municipality__list__item ng-cloak" data-ng-if="filter.query.length" data-ng-repeat="item in filteredList = (items | filter:filter.query)">
+        <article class="municipality__list__item ng-cloak" data-ng-repeat="item in filteredList = (items | filter:filter.query)">
           <h2 class="municipality__list__item__title">[[ item.kommune ]]</h2>
-          <p class="municipality__list__item__slogan" data-ng-if="item.slagord">"[[ item.slagord ]]"</p>
-          <p class="municipality__list__item__slogan" data-ng-if="!item.slagord">(mangler slagord)</p>
+          <p class="municipality__list__item__slogan" data-ng-if="item.slagord">[[ item.slagord ]]<span class="tooltip" title="[[ item.kommentar ]]" data-ng-if="item.kommentar">*</span></p>
+          <p class="municipality__list__item__slogan" data-ng-if="!item.slagord">(mangler kommuneslagord)</p>
         </article>
       </div>
       <div class="municipality__list__summary">
         <p data-ng-show="!filteredList.length">Ingen treff matchet søket <strong data-ng-show="filter.query.length"> «[[ filter.query ]]»</strong>.</p>
-        <!-- <div class="p" data-ng-show="filter.query">
-          <div class="tag" data-ng-show="filter.query"><span class="tag__title">[[ filter.query ]]</span> <button class="tag__remove" type="button" data-ng-click="filter.query = undefined; queryFocus = true; updateFilter();"><span class="tag__remove__title">Fjern [[ filter.query ]]</span></button></div>
-        </div> -->
         <button data-ng-show="filter.query.length" class="link" type="button" data-ng-click="filter.query = ''; queryFocus = true; updateFilter();"><span>Nullstill søket</span></button>
       </div>
     </div>

@@ -3,7 +3,7 @@
 "use strict";
 
 // Init
-var app = angular.module('prototypen', []);
+var app = angular.module('prototypen', ['tooltips']);
 
 // Config
 app.config(function($interpolateProvider) {
@@ -83,3 +83,4 @@ function objectTop(obj) {
 // @codekit-append "directives/enter-key.js";
 // @codekit-append "directives/esc-key.js";
 // @codekit-append "directives/scroll-to.js";
+// @codekit-append "directives/angular-tooltips.js";

@@ -108,6 +108,17 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"/js/directives/angular-tooltips.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/js/directives/prototypen.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
 	"/js/directives/bind-focus.js": {
 		"bF": 0,
 		"ft": 64,
@@ -813,6 +824,19 @@
 		"sct": 0
 		},
 	"/scss/modules/_textfilter.scss": {
+		"aP": 1,
+		"bl": 0,
+		"dP": 10,
+		"ec": 1,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/scss/css/prototypen.min.css",
+		"oF": 0,
+		"oS": 3,
+		"sct": 0
+		},
+	"/scss/modules/_tooltips.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
