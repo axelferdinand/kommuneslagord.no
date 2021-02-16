@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html data-ng-app="prototypen" lang="nb_NO">
 <head>
-  <title>kommuneslagord.no – en generator som viser deg slagordene til norske kommuner</title>
+  <title>kommuneslagord.no – en generator som gir deg slagordene til norske kommuner</title>
 
   <meta charset="utf-8">
 
@@ -9,13 +9,13 @@
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="kommuneslagord.no">
-  <meta property="og:title" content="kommuneslagord.no">
+  <meta property="og:title" content="Generator som gir deg slagordene til norske kommuner">
   <meta property="og:description" content="På kommuneslagord.no kan du søke blant alle kommuneslagordene eller generere et helt tilfeldig kommuneslagord.">
   <meta property="og:url" content="https://kommuneslagord.no/">
 
-  <!-- <meta property="og:image" content="https://kommuneslagord.no/img/kommuneslagord-generator.png">
+  <meta property="og:image" content="https://kommuneslagord.no/img/kommuneslagord-norske-kommuner.png">
   <meta property="og:image:width" content="1000">
-  <meta property="og:image:height" content="1000"> -->
+  <meta property="og:image:height" content="1000">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
@@ -62,10 +62,10 @@
   <div class="municipality" data-ng-controller="municipality">
 
     <header class="municipality__header">
-      <a class="municipality__header__brand" href="https://kommuneslagord.no">
+      <button class="municipality__header__brand" data-ng-click="municipalityToggleView('Generator')">
         <h1 class="municipality__header__brand__title">kommuneslagord.no</h1>
         <i class="municipality__header__brand__icon"></i>
-      </a>
+      </button>
       <div class="municipality__header__toggle">
         <button class="municipality__header__toggle__item" data-ng-class="{'municipality__header__toggle__item--selected': municipality == 'Generator'}" data-ng-click="municipalityToggleView('Generator')">Generator</button><button class="municipality__header__toggle__item" data-ng-class="{'municipality__header__toggle__item--selected': municipality == 'List'}" data-ng-click="municipalityToggleView('List'); filter.query = ''; queryFocus = true;">Liste</button>
       </div>
