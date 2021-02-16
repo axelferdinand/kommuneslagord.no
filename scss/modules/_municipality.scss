@@ -24,20 +24,25 @@ $header-height: 4.5rem;
       left: 0;
       bottom: 0;
 
-      @include break(null, medium) {
-        display: none;
+      padding-left: $gutter * 1.5;
+      padding-right: $gutter * 1.5;
+      font-size: 2rem;
+      line-height: $header-height;
+      display: block;
+      @extend .strong;
+      color: color(secondary);
+      margin: 0;
+
+      &__icon {
+        @extend .icon-logo;
+
+        &:before {
+          transform: scale(1.25);
+        }
       }
 
       &__title {
-        padding-left: $gutter * 1.5;
-        padding-right: $gutter * 1.5;
-        font-size: 1.25rem;
-        line-height: $header-height;
-        display: block;
-        @extend .strong;
-        color: color(primary);
-        font-family: $font-family-primary;
-        margin: 0;
+        display: none;
       }
     }
 
@@ -78,8 +83,16 @@ $header-height: 4.5rem;
         line-height: $header-height;
         display: block;
         @extend .strong;
-        color: color(primary);
+        color: color(secondary);
         margin: 0;
+
+        &__icon {
+          @extend .icon-info;
+        }
+
+        &__title {
+          display: none;
+        }
       }
     }
   }
@@ -124,7 +137,7 @@ $header-height: 4.5rem;
       }
 
       &__slogan {
-        font-size: clamp(3rem, 12vw, 5rem);
+        font-size: clamp(2rem, 12vw, 5rem);
         line-height: 1.25;
         font-family: $font-family-secondary;
         max-width: 100%;

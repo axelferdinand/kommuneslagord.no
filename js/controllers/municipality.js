@@ -1,6 +1,6 @@
 // Municipality
 "use strict";
-app.controller('municipality', ['$scope', '$rootScope', '$http', '$location', '$timeout', 'scroller', function($scope, $rootScope, $http, $location, $timeout, scroller) {
+app.controller('municipality', ['$scope', '$rootScope', '$http', '$location', '$timeout', '$window', 'scroller', function($scope, $rootScope, $http, $location, $timeout, $window, scroller) {
 
 	// Get data from Google Spreadsheet
 	$scope.method = 'GET';
@@ -25,6 +25,11 @@ app.controller('municipality', ['$scope', '$rootScope', '$http', '$location', '$
 			}, {});
 		});
 
+
+
+
+
+
 		// Loading successfull
 		$scope.items.loading = false;
 
@@ -41,12 +46,18 @@ app.controller('municipality', ['$scope', '$rootScope', '$http', '$location', '$
 			$scope.municipalityGenerated = true;
 		};
 
-
-
 	}, function errorCallback(response) {
 		console.log('Ikkeno data, nei.') // If no data
 	});
 
+	// $scope.randomizedList = [];
+	//
+	// angular.forEach($scope.items, function(val) {
+	// 	$scope.randomizedList.push({
+	// 		value: val,
+	// 		rank: 0.5 - $window.Math.random()
+	// 	});
+	// });
 
 
 	$scope.random = function(items) {

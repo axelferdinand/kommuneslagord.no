@@ -1,6 +1,3 @@
-
-
-
 'use strict';
 
 var directive = function ($timeout, $compile) {

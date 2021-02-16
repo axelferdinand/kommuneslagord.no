@@ -1,21 +1,46 @@
 <!DOCTYPE html>
 <html data-ng-app="prototypen" lang="nb_NO">
 <head>
-  <title>Kommuneslagord.no – en generator som viser deg slagordene til norske kommuner</title>
+  <title>kommuneslagord.no – en generator som viser deg slagordene til norske kommuner</title>
 
   <meta charset="utf-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Kommuneslagord.no">
-  <meta property="og:title" content="Kommuneslagord.no">
-  <meta property="og:description" content="På Kommuneslagord.no kan du søke blant alle kommuneslagordene eller generere et helt tilfeldig kommuneslagord.">
+  <meta property="og:site_name" content="kommuneslagord.no">
+  <meta property="og:title" content="kommuneslagord.no">
+  <meta property="og:description" content="På kommuneslagord.no kan du søke blant alle kommuneslagordene eller generere et helt tilfeldig kommuneslagord.">
   <meta property="og:url" content="https://kommuneslagord.no/">
 
   <!-- <meta property="og:image" content="https://kommuneslagord.no/img/kommuneslagord-generator.png">
   <meta property="og:image:width" content="1000">
   <meta property="og:image:height" content="1000"> -->
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="/img/icons/site.webmanifest">
+  <link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color="#002e5e">
+  <link rel="shortcut icon" href="/img/icons/favicon.ico">
+  <meta name="apple-mobile-web-app-title" content="kommuneslagord.no">
+  <meta name="application-name" content="kommuneslagord.no">
+  <meta name="msapplication-TileColor" content="#fffaf3">
+  <meta name="msapplication-config" content="/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#fffaf3">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <link href="/img/splashscreens/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="/img/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
 
   <link rel="stylesheet" href="https://use.typekit.net/jdb2dqe.css">
 
@@ -37,20 +62,24 @@
   <div class="municipality" data-ng-controller="municipality">
 
     <header class="municipality__header">
-      <a class="municipality__header__brand" href="https://kommuneslagord.no" title="Kommuneslagord.no">
-        <h1 class="municipality__header__brand__title">Kommuneslagord.no</h1>
+      <a class="municipality__header__brand" href="https://kommuneslagord.no">
+        <h1 class="municipality__header__brand__title">kommuneslagord.no</h1>
+        <i class="municipality__header__brand__icon"></i>
       </a>
       <div class="municipality__header__toggle">
         <button class="municipality__header__toggle__item" data-ng-class="{'municipality__header__toggle__item--selected': municipality == 'Generator'}" data-ng-click="municipalityToggleView('Generator')">Generator</button><button class="municipality__header__toggle__item" data-ng-class="{'municipality__header__toggle__item--selected': municipality == 'List'}" data-ng-click="municipalityToggleView('List'); filter.query = ''; queryFocus = true;">Liste</button>
       </div>
       <div class="municipality__header__info">
-        <button class="municipality__header__info__button" data-ng-click="municipalityToggleView('Info')">ℹ︎</button>
+        <button class="municipality__header__info__button" data-ng-click="municipalityToggleView('Info')">
+          <span class="municipality__header__info__button__title">Info</span>
+          <i class="municipality__header__info__button__icon"></i>
+        </button>
       </div>
     </header>
 
     <div class="municipality__info ng-cloak" id="info" data-ng-if="municipality == 'Info'">
       <h1>Har du hørt om kommuneslagord?</h1>
-      <p>Kommuneslagord.no er laget for å gi deg oversikt over alle de fantastiske slagordene byråkratene våre har laget for sine respektive kommuner. Du kan søke i <button class="link" type="button" data-ng-click="municipalityToggleView('List')">listen</button> over kommuneslagord, eller du kan prøve <button class="link" type="button" data-ng-click="municipalityToggleView('Generator')">generatoren</button> for å få et tilfeldig kommuneslagord.</p>
+      <p>kommuneslagord.no er laget for å gi deg oversikt over alle de fantastiske slagordene byråkratene våre har laget for sine respektive kommuner. Du kan søke i <button class="link" type="button" data-ng-click="municipalityToggleView('List')">listen</button> over kommuneslagord, eller du kan prøve <button class="link" type="button" data-ng-click="municipalityToggleView('Generator')">generatoren</button> for å få et tilfeldig kommuneslagord.</p>
       <p>Listen inkluderer de gamle slagordene som ble fjernet som følge av kommuenereformene i perioden 2017 til 2020 – rett og slett fordi de er helt supre.</p>
       <p>Noen av kommunene våre mangler slagord, enten fordi slagordene ikke er vedtatt eller offisielt markedsført enda. Om du har forslag til slagord for din kommune, bør du ta kontakt med din nærmeste byråkrat.</p>
       <p>Nettstedet er laget av <a href="https://prototypen.no" target="_blank">Prototypen</a> og bruker Google Analytics for å sjekke hvor mange som har vært innom.</p>
@@ -87,7 +116,7 @@
       </div>
       <div class="municipality__list__wrapper">
         <article class="municipality__list__item ng-cloak" data-ng-repeat="item in filteredList = (items | filter:filter.query)">
-          <h2 class="municipality__list__item__title">[[ item.kommune ]]</h2>
+          <h2 class="municipality__list__item__title">[[ item.kommune ]] kommune</h2>
           <p class="municipality__list__item__slogan" data-ng-if="item.slagord">[[ item.slagord ]]<span class="tooltip" title="[[ item.kommentar ]]" data-ng-if="item.kommentar">*</span></p>
           <p class="municipality__list__item__slogan" data-ng-if="!item.slagord">(mangler kommuneslagord)</p>
         </article>
