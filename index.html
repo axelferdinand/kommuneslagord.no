@@ -9,7 +9,7 @@
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="kommuneslagord.no">
-  <meta property="og:title" content="Generator som gir deg slagordene til norske kommuner">
+  <meta property="og:title" content="Generatoren som gir deg slagordene til norske kommuner">
   <meta property="og:description" content="På kommuneslagord.no kan du søke blant alle kommuneslagordene eller generere et helt tilfeldig kommuneslagord.">
   <meta property="og:url" content="https://kommuneslagord.no/">
 
@@ -89,6 +89,10 @@
       <article class="municipality__generator__item" data-ng-repeat="item in random(items) | filter:{ slagord: ' '} | limitTo: 1">
         <h2 class="municipality__generator__item__title">[[ item.kommune ]] kommune</h2>
         <p class="municipality__generator__item__slogan">[[ item.slagord ]]</p>
+        <button class="municipality__generator__item__reload" data-ng-click="municipalityToggleView('Generator')">
+          <span class="municipality__generator__item__reload__title">Generer nytt kommuneslagord</span>
+          <i class="municipality__generator__item__reload__icon"></i>
+        </button>
       </article>
     </div>
 

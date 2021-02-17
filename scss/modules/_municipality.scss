@@ -1,4 +1,4 @@
-$header-height: 4.5rem;
+$header-height: 5rem;
 
 .municipality {
   @include module;
@@ -11,7 +11,7 @@ $header-height: 4.5rem;
     bottom: 0;
     width: 100%;
     background-color: color(light);
-    box-shadow: $default-horizontal-offset -2px $default-blur $default-spread $default-opacity;;
+    box-shadow: $default-horizontal-offset -2px $default-blur $default-spread $default-opacity;
     padding: $gutter * 1.25;
     height: $header-height;
 
@@ -37,7 +37,7 @@ $header-height: 4.5rem;
         @extend .icon-logo;
 
         &:before {
-          transform: scale(1.25);
+          transform: scale(1.5);
         }
       }
 
@@ -64,6 +64,7 @@ $header-height: 4.5rem;
           border-bottom-right-radius: 0 !important;
         }
       }
+
       &__item + &__item {
         border-top-left-radius: 0 !important;
         border-bottom-left-radius: 0 !important;
@@ -142,6 +143,25 @@ $header-height: 4.5rem;
         font-family: $font-family-secondary;
         max-width: 100%;
         font-weight: 700;
+        margin-bottom: $gutter * 2;
+      }
+
+      &__reload {
+        transition: $default-transition;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+
+        &__title {
+          display: none;
+        }
+
+        &__icon {
+          @extend .icon-reload;
+          font-size: 2rem;
+          color: color(primary);
+        }
       }
     }
   }
@@ -149,7 +169,7 @@ $header-height: 4.5rem;
   &__list {
     @extend .animated;
     @extend .animated--fade-in;
-    padding-top: $gutter * 6;
+    // padding-top: $gutter * 6;
     padding-bottom: $gutter * 12;
 
 
