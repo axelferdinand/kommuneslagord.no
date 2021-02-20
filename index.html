@@ -77,7 +77,7 @@
       </div>
     </header>
 
-    <article class="municipality__generator__item ng-cloak" data-ng-repeat="item in items | filter:{ slagord: ' '}" data-ng-if="$location.path() === '/kommuneslagordet-til-'+ [[ item.kommune ]]  +'-kommune'">
+    <article class="municipality__generator__item ng-cloak" data-ng-repeat="item in items" data-ng-if="$location.path() === '/kommuneslagordet-til-'+ [[ item.kommune ]]  +'-kommune'">
       <h2 class="municipality__generator__item__title">Kommuneslagordet til [[ item.kommune ]] kommune er:</h2>
       <p class="municipality__generator__item__slogan">[[ item.slagord ]]</p>
       <p class="municipality__generator__item__slogan" data-ng-if="!item.slagord">(mangler kommuneslagord)</p>
