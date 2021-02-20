@@ -62,32 +62,40 @@
   <div class="municipality" data-ng-controller="municipality">
 
     <header class="municipality__header">
-      <button class="municipality__header__brand" data-ng-click="municipalityToggleView('Generator')">
+      <a class="municipality__header__brand" data-ng-href="/">
         <h1 class="municipality__header__brand__title">kommuneslagord.no</h1>
         <i class="municipality__header__brand__icon"></i>
-      </button>
+      </a>
       <div class="municipality__header__toggle">
-        <button class="municipality__header__toggle__item" data-ng-class="{'municipality__header__toggle__item--selected': municipality == 'Generator'}" data-ng-click="municipalityToggleView('Generator')">Generator</button><button class="municipality__header__toggle__item" data-ng-class="{'municipality__header__toggle__item--selected': municipality == 'List'}" data-ng-click="municipalityToggleView('List'); filter.query = ''; queryFocus = true;">Liste</button>
+        <a class="municipality__header__toggle__item" data-ng-class="{'municipality__header__toggle__item--selected': $location.path() === '/'}" data-ng-href="/">Generator</a><a class="municipality__header__toggle__item" data-ng-class="{'municipality__header__toggle__item--selected': $location.path() === '/liste-over-kommuneslagord'}" data-ng-click="filter.query = ''; queryFocus = true;" data-ng-href="/liste-over-kommuneslagord">Liste</a>
       </div>
       <div class="municipality__header__info">
-        <button class="municipality__header__info__button" data-ng-click="municipalityToggleView('Info')">
+        <a class="municipality__header__info__button" data-ng-href="/info">
           <span class="municipality__header__info__button__title">Info</span>
           <i class="municipality__header__info__button__icon"></i>
-        </button>
+        </a>
       </div>
     </header>
 
-    <div class="municipality__info ng-cloak" id="info" data-ng-if="municipality == 'Info'">
+    <article class="municipality__generator__item ng-cloak" data-ng-repeat="item in items | filter:{ slagord: ' '}" data-ng-if="$location.path() === '/kommuneslagordet-til-'+ [[ item.kommune ]]  +'-kommune'">
+      <h2 class="municipality__generator__item__title">Kommuneslagordet til [[ item.kommune ]] kommune er:</h2>
+      <p class="municipality__generator__item__slogan">[[ item.slagord ]]</p>
+      <p class="municipality__generator__item__slogan" data-ng-if="!item.slagord">(mangler kommuneslagord)</p>
+    </article>
+
+    <div class="municipality__info ng-cloak" id="info" data-ng-if="$location.path() === '/info'">
       <h1>Har du hørt om kommuneslagord?</h1>
-      <p>kommuneslagord.no er laget for å gi deg oversikt over alle de fantastiske slagordene byråkratene våre har laget for sine respektive kommuner. Du kan søke i <button class="link" type="button" data-ng-click="municipalityToggleView('List')">listen</button> over kommuneslagord, eller du kan prøve <button class="link" type="button" data-ng-click="municipalityToggleView('Generator')">generatoren</button> for å få et tilfeldig kommuneslagord.</p>
+      <p>kommuneslagord.no er laget for å gi deg oversikt over alle de fantastiske slagordene byråkratene våre har laget for sine respektive kommuner. Du kan søke i <a data-ng-href="/liste-over-kommuneslagord">listen</a> over kommuneslagord, eller du kan prøve <a data-ng-href="/">generatoren</a> for å få et tilfeldig kommuneslagord.</p>
       <p>Listen inkluderer de gamle slagordene som ble fjernet som følge av kommuenereformene i perioden 2017 til 2020 – rett og slett fordi de er helt supre.</p>
       <p>Noen av kommunene våre mangler slagord, enten fordi slagordene ikke er vedtatt eller offisielt markedsført enda. Om du har forslag til slagord for din kommune, bør du ta kontakt med din nærmeste byråkrat.</p>
       <p>Nettstedet er laget av <a href="https://prototypen.no" target="_blank">Prototypen</a> og bruker Google Analytics for å sjekke hvor mange som har vært innom.</p>
     </div>
 
-    <div class="municipality__generator ng-cloak" id="generator" data-ng-if="municipality == 'Generator'">
+    <div class="municipality__generator ng-cloak" id="generator" data-ng-if="$location.path() === '/'">
       <article class="municipality__generator__item" data-ng-repeat="item in random(items) | filter:{ slagord: ' '} | limitTo: 1">
-        <h2 class="municipality__generator__item__title">[[ item.kommune ]] kommune</h2>
+        <a data-ng-href="kommuneslagordet-til-[[ item.kommune ]]-kommune">
+          <h2 class="municipality__generator__item__title">[[ item.kommune ]] kommune</h2>
+        </a>
         <p class="municipality__generator__item__slogan">[[ item.slagord ]]</p>
         <button class="municipality__generator__item__reload" data-ng-click="municipalityToggleView('Generator')">
           <span class="municipality__generator__item__reload__title">Generer nytt kommuneslagord</span>
@@ -96,7 +104,7 @@
       </article>
     </div>
 
-    <div class="municipality__list ng-cloak" id="list" data-ng-if="municipality == 'List'">
+    <div class="municipality__list ng-cloak" id="list" data-ng-if="$location.path() === '/liste-over-kommuneslagord'">
       <div class="municipality__list__filter">
         <div class="textfilter textfilter--large">
           <input
@@ -120,7 +128,9 @@
       </div>
       <div class="municipality__list__wrapper">
         <article class="municipality__list__item ng-cloak" data-ng-repeat="item in filteredList = (items | filter:filter.query)">
-          <h2 class="municipality__list__item__title">[[ item.kommune ]] kommune</h2>
+          <a data-ng-href="kommuneslagordet-til-[[ item.kommune ]]-kommune">
+            <h2 class="municipality__list__item__title">[[ item.kommune ]] kommune</h2>
+          </a>
           <p class="municipality__list__item__slogan" data-ng-if="item.slagord">[[ item.slagord ]]<span class="tooltip" title="[[ item.kommentar ]]" data-ng-if="item.kommentar">*</span></p>
           <p class="municipality__list__item__slogan" data-ng-if="!item.slagord">(mangler kommuneslagord)</p>
         </article>

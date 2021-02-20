@@ -7,6 +7,12 @@ app.controller('municipality', ['$scope', '$rootScope', '$http', '$location', '$
 	$scope.url = 'https://spreadsheets.google.com/feeds/list/1payLLHFRTqViJN74Kl0HjdeH2YypoPnRcM5bl4v2qgg/1/public/values?alt=json';
 	$scope.items = { loading: true, data: [] };
 
+	$scope.kommune = 'Alvdal';
+
+	// $scope.$route = $route;
+	$scope.$location = $location;
+	// $scope.$routeParams = $routeParams;
+
 	$http({
 		method: 'GET',
 		url: $scope.url

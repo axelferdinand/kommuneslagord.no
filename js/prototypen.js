@@ -6,10 +6,15 @@
 var app = angular.module('prototypen', ['tooltips']);
 
 // Config
-app.config(function($interpolateProvider) {
+app.config(function($interpolateProvider, $locationProvider) {
 	$interpolateProvider.startSymbol('[[');
 	$interpolateProvider.endSymbol(']]');
 
+
+	$locationProvider.html5Mode({
+		enabled: true,
+		requireBase: false
+	});
 });
 
 // Scroll to with animation
