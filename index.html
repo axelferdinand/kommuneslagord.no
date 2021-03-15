@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html data-ng-app="prototypen" lang="nb_NO">
+<html data-ng-app="prototypen" lang="nb_NO" data-ng-controller="municipality">
 <head>
-  <title>kommuneslagord.no – en generator som gir deg slagordene til norske kommuner</title>
+  <title>[[ title || 'kommuneslagord.no – en generator som gir deg slagordene til norske kommuner' ]]</title>
+  <meta name="description" content="[[ description ]]">
 
   <meta charset="utf-8">
 
@@ -59,8 +60,7 @@
   </script>
 </head>
 <body>
-  <div class="municipality" data-ng-controller="municipality">
-
+  <div class="municipality">
     <header class="municipality__header">
       <a class="municipality__header__brand" data-ng-href="/">
         <h1 class="municipality__header__brand__title">kommuneslagord.no</h1>
@@ -81,6 +81,8 @@
       <h2 class="municipality__generator__item__title">Kommuneslagordet til [[ item.kommune ]] kommune er:</h2>
       <p class="municipality__generator__item__slogan">[[ item.slagord ]]</p>
       <p class="municipality__generator__item__slogan" data-ng-if="!item.slagord">(mangler kommuneslagord)</p>
+      [[ setTitle('Kommuneslagordet til '+item.kommune+' kommune – kommuneslagord.no') ]]
+      [[ setDescription(item.slagord) ]]
     </article>
 
     <div class="municipality__info ng-cloak" id="info" data-ng-if="$location.path() === '/info'">
@@ -89,6 +91,7 @@
       <p>Listen inkluderer de gamle slagordene som ble fjernet som følge av kommuenereformene i perioden 2017 til 2020 – rett og slett fordi de er helt supre.</p>
       <p>Noen av kommunene våre mangler slagord, enten fordi slagordene ikke er vedtatt eller offisielt markedsført enda. Om du har forslag til slagord for din kommune, bør du ta kontakt med din nærmeste byråkrat.</p>
       <p>Nettstedet er laget av <a href="https://prototypen.no" target="_blank">Prototypen</a> og bruker Google Analytics for å sjekke hvor mange som har vært innom.</p>
+      [[ setTitle('Har du hørt om kommuneslagord? – kommuneslagord.no') ]]
     </div>
 
     <div class="municipality__generator ng-cloak" id="generator" data-ng-if="$location.path() === '/'">
@@ -140,7 +143,7 @@
         <button data-ng-show="filter.query.length" class="link" type="button" data-ng-click="filter.query = ''; queryFocus = true; updateFilter();"><span>Nullstill søket</span></button>
       </div>
     </div>
-
+    [[ setTitle('Liste over kommuneslagord – kommuneslagord.no') ]]
   </div>
 </body>
 </html>
