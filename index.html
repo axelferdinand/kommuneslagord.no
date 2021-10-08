@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html data-ng-app="prototypen" lang="nb_NO" data-ng-controller="municipality">
 <head>
-  <title>[[ title || 'kommuneslagord.no – en generator som gir deg slagordene til norske kommuner' ]]</title>
-  <meta name="description" content="[[ description ]]">
+  <title>Kommuneslagord.no – generatoren som gir deg slagordene til norske kommuner</title>
+  <meta name="description" content="kommuneslagord.no er laget for å gi deg oversikt over alle de fantastiske slagordene byråkratene våre har laget for sine respektive kommuner.">
 
   <meta charset="utf-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="kommuneslagord.no">
+  <meta property="og:site_name" content="Kommuneslagord.no">
   <meta property="og:title" content="Generatoren som gir deg slagordene til norske kommuner">
   <meta property="og:description" content="På kommuneslagord.no kan du søke blant alle kommuneslagordene eller generere et helt tilfeldig kommuneslagord.">
   <meta property="og:url" content="https://kommuneslagord.no/">
@@ -77,12 +77,12 @@
       </div>
     </header>
 
-    <article class="municipality__generator__item ng-cloak" data-ng-repeat="item in items" data-ng-if="$location.path() === '/kommuneslagordet-til-'+ [[ item.kommune ]]  +'-kommune'">
-      <h2 class="municipality__generator__item__title">Kommuneslagordet til [[ item.kommune ]] kommune er:</h2>
-      <p class="municipality__generator__item__slogan">[[ item.slagord ]]</p>
-      <p class="municipality__generator__item__slogan" data-ng-if="!item.slagord">(mangler kommuneslagord)</p>
-      [[ setTitle('Kommuneslagordet til '+item.kommune+' kommune – kommuneslagord.no') ]]
-      [[ setDescription(item.slagord) ]]
+    <article class="municipality__generator__item ng-cloak" data-ng-repeat="item in items" data-ng-if="$location.path() === '/kommuneslagordet-til-'+ [[ item[0] ]]  +'-kommune'">
+      <h2 class="municipality__generator__item__title">Kommuneslagordet til [[ item[0] ]] kommune er:</h2>
+      <p class="municipality__generator__item__slogan">[[ item[1] ]]</p>
+      <p class="municipality__generator__item__slogan" data-ng-if="!item[1]">(mangler kommuneslagord)</p>
+      [[ setTitle('Kommuneslagordet til '+item[0]+' kommune – kommuneslagord.no') ]]
+      [[ setDescription(item[1]) ]]
     </article>
 
     <div class="municipality__info ng-cloak" id="info" data-ng-if="$location.path() === '/info'">
@@ -95,11 +95,11 @@
     </div>
 
     <div class="municipality__generator ng-cloak" id="generator" data-ng-if="$location.path() === '/'">
-      <article class="municipality__generator__item" data-ng-repeat="item in random(items) | filter:{ slagord: ' '} | limitTo: 1">
-        <a data-ng-href="kommuneslagordet-til-[[ item.kommune ]]-kommune">
-          <h2 class="municipality__generator__item__title">[[ item.kommune ]] kommune</h2>
+      <article class="municipality__generator__item" data-ng-repeat="item in random(items) | filter:{ 1: ' '} | limitTo: 1">
+        <a data-ng-href="kommuneslagordet-til-[[ item[0] ]]-kommune">
+          <h2 class="municipality__generator__item__title">[[ item[0] ]] kommune</h2>
         </a>
-        <p class="municipality__generator__item__slogan">[[ item.slagord ]]</p>
+        <p class="municipality__generator__item__slogan">[[ item[1] ]]</p>
         <button class="municipality__generator__item__reload" data-ng-click="municipalityToggleView('Generator')">
           <span class="municipality__generator__item__reload__title">Generer nytt kommuneslagord</span>
           <i class="municipality__generator__item__reload__icon"></i>
@@ -131,11 +131,11 @@
       </div>
       <div class="municipality__list__wrapper">
         <article class="municipality__list__item ng-cloak" data-ng-repeat="item in filteredList = (items | filter:filter.query)">
-          <a data-ng-href="kommuneslagordet-til-[[ item.kommune ]]-kommune">
-            <h2 class="municipality__list__item__title">[[ item.kommune ]] kommune</h2>
+          <a data-ng-href="kommuneslagordet-til-[[ item[0] ]]-kommune">
+            <h2 class="municipality__list__item__title">[[ item[0] ]] kommune</h2>
           </a>
-          <p class="municipality__list__item__slogan" data-ng-if="item.slagord">[[ item.slagord ]]<span class="tooltip" title="[[ item.kommentar ]]" data-ng-if="item.kommentar">*</span></p>
-          <p class="municipality__list__item__slogan" data-ng-if="!item.slagord">(mangler kommuneslagord)</p>
+          <p class="municipality__list__item__slogan" data-ng-if="item[1]">[[ item[1] ]]<span class="tooltip" title="[[ item[2] ]]" data-ng-if="item[2]">*</span></p>
+          <p class="municipality__list__item__slogan" data-ng-if="!item[1]">(mangler kommuneslagord)</p>
         </article>
       </div>
       <div class="municipality__list__summary">
